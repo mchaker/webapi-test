@@ -7,14 +7,14 @@ on:
 
 jobs:
   test:
-    name: Test on .NET Core for ${{ matrix.os }}
+    name: Test Debug config on .NET Core for ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
     steps:
     - uses: actions/checkout@v1
-    - name: Use .NET 2.2.108
+    - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.2.108
@@ -23,6 +23,7 @@ jobs:
         dotnet build --configuration Debug
         dotnet test
   build:
+    name: Build Release config on .NET Core for ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -34,4 +35,5 @@ jobs:
       with:
         dotnet-version: 2.2.108
     - name: Build with dotnet
-      run: dotnet build --configuration Release
+      run: |
+        dotnet build --configuration Release
