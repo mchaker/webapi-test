@@ -3,10 +3,10 @@ name: ASP.NET Core CI
 on:
   pull_request:
     branches:
-    - master
+    - development
 jobs:
   test:
-    name: Test on .NET Core for ${{ matrix.os }}
+    name: Test Debug config on .NET Core for ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -21,7 +21,14 @@ jobs:
       run: |
         dotnet build --configuration Debug
         dotnet test
+
+on:
+  pull_request:
+    branches:
+    - master
+
   build:
+    name: Build Release config on .NET Core for ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
