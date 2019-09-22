@@ -5,7 +5,7 @@ on:
     branches:
     - development
 jobs:
-  test:
+  test_debug:
     name: Test Debug config on .NET Core for ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
@@ -26,8 +26,8 @@ on:
   pull_request:
     branches:
     - master
-
-  build:
+jobs:
+  build_release:
     name: Build Release config on .NET Core for ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
