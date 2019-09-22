@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
     - master
+
 jobs:
   test:
     name: Test on .NET Core for ${{ matrix.os }}
